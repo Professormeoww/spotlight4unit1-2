@@ -1,0 +1,581 @@
+html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1 Practice - Family and Friends 2</title>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #4ecdc4;
+            --text-color: #2d3436;
+            --bg-color: #f7f9fc;
+            --card-bg: #ffffff;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* Styles for Task 1 */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .vocab-item {
+            text-align: center;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .vocab-item:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .vocab-img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .options label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .options label:hover {
+            background-color: #f0f8ff;
+        }
+
+        /* Styles for Task 2 */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .action-item input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        /* General Input Styles */
+        input[type="text"], select {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        /* Feedback Styles */
+        .correct {
+            border-color: var(--success-color) !important;
+            background-color: #e8f8f5;
+        }
+
+        .incorrect {
+            border-color: var(--error-color) !important;
+            background-color: #fdedec;
+        }
+
+        .feedback-msg {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .btn-check {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-check:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-top: 20px;
+        }
+
+        /* Placeholder styling helper */
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #999;
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+        
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Now I Know - Module 1</h1>
+        <p>Проверь свои знания лексики и грамматики!</p>
+    </header>
+
+    <!-- TASK 1: VOCABULARY -->
+    <div class="section" id="task1">
+        <h2>1. Choose the correct word</h2>
+        <p>Посмотри на картинку и выбери правильное слово.</p>
+        
+        <div class="vocab-grid">
+            <!-- Item 1 -->
+            <div class="vocab-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="mobile_phone.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Mobile+Phone" alt="Mobile Phone" class="vocab-img">
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="t1_q1" value="mobile phone"> mobile phone</label>
+                    <label><input type="radio" name="t1_q1" value="camera"> camera</label>
+                </div>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="vocab-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="helmet.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Helmet" alt="Helmet" class="vocab-img">
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="t1_q2" value="hat"> hat</label>
+                    <label><input type="radio" name="t1_q2" value="helmet"> helmet</label>
+                </div>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="vocab-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="hairbrush.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Hairbrush" alt="Hairbrush" class="vocab-img">
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="t1_q3" value="hairbrush"> hairbrush</label>
+                    <label><input type="radio" name="t1_q3" value="keys"> keys</label>
+                </div>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="vocab-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="roller_blades.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Roller+Blades" alt="Roller Blades" class="vocab-img">
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="t1_q4" value="roller blades"> roller blades</label>
+                    <label><input type="radio" name="t1_q4" value="shoes"> shoes</label>
+                </div>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="vocab-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="gloves.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Gloves" alt="Gloves" class="vocab-img">
+                </div>
+                <div class="options">
+                    <label><input type="radio" name="t1_q5" value="gloves"> gloves</label>
+                    <label><input type="radio" name="t1_q5" value="coat"> coat</label>
+                </div>
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK 2: LOOK AND WRITE -->
+    <div class="section" id="task2">
+        <h2>2. Look and write</h2>
+        <p>Напиши глагол, который соответствует картинке.</p>
+        
+        <div class="action-grid">
+            <!-- Action 1 -->
+            <div class="action-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="sail.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Sailing" alt="Sailing" class="vocab-img">
+                </div>
+                <input type="text" data-answer="sail" placeholder="Write verb...">
+                <div class="feedback-msg"></div>
+            </div>
+
+            <!-- Action 2 -->
+            <div class="action-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="skate.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Skating" alt="Skating" class="vocab-img">
+                </div>
+                <input type="text" data-answer="skate" placeholder="Write verb...">
+                <div class="feedback-msg"></div>
+            </div>
+
+            <!-- Action 3 -->
+            <div class="action-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="skip.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Skipping" alt="Skipping" class="vocab-img">
+                </div>
+                <input type="text" data-answer="skip" placeholder="Write verb...">
+                <div class="feedback-msg"></div>
+            </div>
+
+            <!-- Action 4 -->
+            <div class="action-item">
+                <div class="img-wrapper">
+                    <!-- ЗАМЕНИТЬ КАРТИНКУ: src="ski.png" -->
+                    <img src="https://placehold.co/200x120/e0e0e0/999?text=Skiing" alt="Skiing" class="vocab-img">
+                </div>
+                <input type="text" data-answer="ski" placeholder="Write verb...">
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK 3: NUMBERS -->
+    <div class="section" id="task3">
+        <h2>3. Write the numbers</h2>
+        <p>Напиши числа словами (не забудь про дефисы!).</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            <div>
+                <label>1. 60 → </label>
+                <input type="text" data-answer="sixty" style="width: 60%;">
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <label>2. 30 → </label>
+                <input type="text" data-answer="thirty" style="width: 60%;">
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <label>3. 95 → </label>
+                <input type="text" data-answer="ninety-five" style="width: 60%;">
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <label>4. 100 → </label>
+                <input type="text" data-answer="one hundred" style="width: 60%;">
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <label>5. 81 → </label>
+                <input type="text" data-answer="eighty-one" style="width: 60%;">
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <label>6. 50 → </label>
+                <input type="text" data-answer="fifty" style="width: 60%;">
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK 4: GRAMMAR -->
+    <div class="section" id="task4">
+        <h2>4. Read and choose</h2>
+        <p>Выбери правильную грамматическую форму.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <p>1. He is a great cook. He <select data-answer="can"><option value="">...</option><option value="is">is</option><option value="can">can</option></select> cook really well.</p>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>2. Look! Mary is <select data-answer="dancing"><option value="">...</option><option value="dance">dance</option><option value="dancing">dancing</option></select>!</p>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>3. <select data-answer="Can you"><option value="">...</option><option value="Are you">Are you</option><option value="Can you">Can you</option></select> ride a bike?</p>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>4. Harry and Tom <select data-answer="aren't"><option value="">...</option><option value="aren't">aren't</option><option value="isn't">isn't</option></select> sleeping. They're in the garden.</p>
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK 5: PREPOSITIONS -->
+    <div class="section" id="task5">
+        <h2>5. Complete: on, in, next to, behind, under</h2>
+        <p>Дополни предложения предлогами места.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <p>1. The mobile phone is <select data-answer="under"><option value="">...</option><option value="on">on</option><option value="in">in</option><option value="next to">next to</option><option value="behind">behind</option><option value="under">under</option></select> the table.</p>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>2. There are roller blades <select data-answer="next to"><option value="">...</option><option value="on">on</option><option value="in">in</option><option value="next to">next to</option><option value="behind">behind</option><option value="under">under</option></select> the chair.</p>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>3. The helmet is <select data-answer="behind"><option value="">...</option><option value="on">on</option><option value="in">in</option><option value="next to">next to</option><option value="behind">behind</option><option value="under">under</option></select> the box.</p>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>4. The camera is <select data-answer="in"><option value="">...</option><option value="on">on</option><option value="in">in</option><option value="next to">next to</option><option value="behind">behind</option><option value="under">under</option></select> the box.</p>
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK 6: COMMUNICATION -->
+    <div class="section" id="task6">
+        <h2>6. Read and match</h2>
+        <p>Соедини вопрос с правильным ответом.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div>
+                    <p>1. What does she look like?</p>
+                    <select data-answer="a" style="width: 100%;"><option value="">Choose answer...</option><option value="a">She's tall and slim.</option><option value="b">No, he isn't.</option><option value="c">No, it's on the shelf.</option><option value="d">Thirty-six.</option></select>
+                    <div class="feedback-msg"></div>
+                </div>
+                <div>
+                    <p>2. How old is your mother?</p>
+                    <select data-answer="d" style="width: 100%;"><option value="">Choose answer...</option><option value="a">She's tall and slim.</option><option value="b">No, he isn't.</option><option value="c">No, it's on the shelf.</option><option value="d">Thirty-six.</option></select>
+                    <div class="feedback-msg"></div>
+                </div>
+                <div>
+                    <p>3. Is your uncle from England?</p>
+                    <select data-answer="b" style="width: 100%;"><option value="">Choose answer...</option><option value="a">She's tall and slim.</option><option value="b">No, he isn't.</option><option value="c">No, it's on the shelf.</option><option value="d">Thirty-six.</option></select>
+                    <div class="feedback-msg"></div>
+                </div>
+                <div>
+                    <p>4. Have you got my CD?</p>
+                    <select data-answer="c" style="width: 100%;"><option value="">Choose answer...</option><option value="a">She's tall and slim.</option><option value="b">No, he isn't.</option><option value="c">No, it's on the shelf.</option><option value="d">Thirty-six.</option></select>
+                    <div class="feedback-msg"></div>
+                </div>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid var(--secondary-color);">
+                <h3 style="margin-top: 0; color: #666; font-size: 1rem;">Answers:</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><strong>a.</strong> She's tall and slim.</li>
+                    <li style="margin-bottom: 10px;"><strong>b.</strong> No, he isn't.</li>
+                    <li style="margin-bottom: 10px;"><strong>c.</strong> No, it's on the shelf.</li>
+                    <li style="margin-bottom: 10px;"><strong>d.</strong> Thirty-six.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- TASK 7: READING -->
+    <div class="section" id="task7">
+        <h2>7. Look, read and say yes or no</h2>
+        <p>Прочитай утверждение и выбери Yes или No.</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <p>1. Wendy is singing.</p>
+                <select data-answer="no"><option value="">...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>2. Jack and Steve are playing.</p>
+                <select data-answer="yes"><option value="">...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>3. Kathy is dancing.</p>
+                <select data-answer="no"><option value="">...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                <div class="feedback-msg"></div>
+            </div>
+            <div>
+                <p>4. Jen is sailing.</p>
+                <select data-answer="no"><option value="">...</option><option value="yes">Yes</option><option value="no">No</option></select>
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-check" onclick="checkAllAnswers()">Проверить ответы</button>
+    <div class="score-display" id="scoreDisplay"></div>
+
+</div>
+
+<script>
+    function checkAllAnswers() {
+        let score = 0;
+        let totalQuestions = 0;
+
+        // Helper function to check inputs/selects
+        const checkElement = (el) => {
+            totalQuestions++;
+            const userAnswer = el.value.trim().toLowerCase();
+            const correctAnswer = el.dataset.answer.toLowerCase();
+            const feedbackEl = el.parentElement.querySelector('.feedback-msg');
+            
+            // Reset styles
+            el.classList.remove('correct', 'incorrect');
+            
+            if (userAnswer === correctAnswer) {
+                score++;
+                el.classList.add('correct');
+                if(feedbackEl) {
+                    feedbackEl.textContent = "✓ Правильно!";
+                    feedbackEl.style.color = "var(--success-color)";
+                }
+            } else {
+                el.classList.add('incorrect');
+                if(feedbackEl) {
+                    feedbackEl.textContent = "✗ Попробуй еще раз";
+                    feedbackEl.style.color = "var(--error-color)";
+                }
+            }
+        };
+
+        // Check Task 1 (Radio buttons)
+        const t1Groups = ['t1_q1', 't1_q2', 't1_q3', 't1_q4', 't1_q5'];
+        const t1Answers = {
+            't1_q1': 'mobile phone',
+            't1_q2': 'helmet',
+            't1_q3': 'hairbrush',
+            't1_q4': 'roller blades',
+            't1_q5': 'gloves'
+        };
+
+        t1Groups.forEach(groupName => {
+            totalQuestions++;
+            const radios = document.getElementsByName(groupName);
+            let selected = null;
+            let feedbackEl = radios[0].closest('.vocab-item').querySelector('.feedback-msg');
+            
+            radios.forEach(radio => {
+                radio.closest('label').classList.remove('correct', 'incorrect');
+                if (radio.checked) selected = radio;
+            });
+
+            if (selected && selected.value === t1Answers[groupName]) {
+                score++;
+                selected.closest('label').classList.add('correct');
+                feedbackEl.textContent = "✓ Верно!";
+                feedbackEl.style.color = "var(--success-color)";
+            } else {
+                if(selected) selected.closest('label').classList.add('incorrect');
+                feedbackEl.textContent = "✗ Неверно";
+                feedbackEl.style.color = "var(--error-color)";
+            }
+        });
+
+        // Check Text Inputs (Task 2 & 3)
+        document.querySelectorAll('input[type="text"][data-answer]').forEach(checkElement);
+
+        // Check Selects (Task 4, 5, 6, 7)
+        document.querySelectorAll('select[data-answer]').forEach(checkElement);
+
+        // Display Score
+        const percentage = Math.round((score / totalQuestions) * 100);
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        scoreDisplay.innerHTML = `Твой результат: ${score} из ${totalQuestions} (${percentage}%)`;
+        
+        if(percentage === 100) {
+            scoreDisplay.innerHTML += " 🎉 Отлично!";
+        } else if (percentage >= 70) {
+            scoreDisplay.innerHTML += " 👍 Хорошая работа!";
+        } else {
+            scoreDisplay.innerHTML += " 💪 Нужно еще потренироваться";
+        }
+    }
+</script>
+
+</body>
+</html>
